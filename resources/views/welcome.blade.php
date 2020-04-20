@@ -1,9 +1,44 @@
 @extends('layouts.main')
 @section('content')
-    <h1>Home Page</h1>
-    @if (session('successMsg'))
-         <div class="alert alert-success" role="alert">
-            {{session('successMsg')}}
-        </div>
-    @endif
+
+    <div class="container">
+        
+        <h1>Home Page</h1>
+        @if (session('successMsg'))
+             <div class="alert alert-success" role="alert">
+                {{session('successMsg')}}
+            </div>
+        @endif
+
+        <table class="table">
+            <thead class="black white-text">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($student as $students)
+                    <tr>
+                        <th scope="row">{{$students->id}}</th>
+                        <td>{{$students->first_name}}</td>
+                        <td>{{$students->last_name}}</td>
+                        <td>{{$students->email}}</td>
+                        <td>{{$students->phone}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{{route('edit', $students->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                             ||
+                            <a class="btn btn-danger btn-sm" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+    </div>
+
 @endsection
