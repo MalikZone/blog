@@ -32,7 +32,16 @@
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{route('edit', $students->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                              ||
-                            <a class="btn btn-danger btn-sm" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <form 
+                                action="{{ route('delete', $students->id) }}" 
+                                method="POST" class="d-inline"
+                                onclick="return confirm('are you sure to delete this data ?')">
+                              @csrf
+                              @method('delete')
+                              <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
